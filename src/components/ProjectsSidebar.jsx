@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-export default function ProjectsSidebar() {
+export default function ProjectsSidebar({onStartAddProject}) {
 
     return (
         <aside
@@ -10,7 +10,7 @@ export default function ProjectsSidebar() {
                 Your Projects
             </h2>
             <div>
-               <Button> + Add New Project</Button>
+               <Button onClick={onStartAddProject}> + Add New Project</Button>
             </div>
             <ul>
                 <li></li>
