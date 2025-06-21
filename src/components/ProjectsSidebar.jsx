@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-export default function ProjectsSidebar({onStartAddProject}) {
+export default function ProjectsSidebar({onStartAddProject,projects}) {
 
     return (
         <aside
@@ -12,8 +12,14 @@ export default function ProjectsSidebar({onStartAddProject}) {
             <div>
                <Button onClick={onStartAddProject}> + Add New Project</Button>
             </div>
-            <ul>
-                <li></li>
+            <ul className="mt-8">
+               {projects.map(project=>(
+                    <li key={project.id}>
+                        <button className="w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800">
+                            {project.title}
+                        </button>
+                    </li>
+                ))} 
             </ul>
         </aside>
     )
