@@ -1,7 +1,7 @@
-import React from "react";
+
 import Button from "./Button";
 
-export default function ProjectsSidebar({onStartAddProject,projects}) {
+export default function ProjectsSidebar({onStartAddProject,projects,onSelectProject,selectedProjectId}) {
 
     return (
         <aside
@@ -13,13 +13,26 @@ export default function ProjectsSidebar({onStartAddProject,projects}) {
                <Button onClick={onStartAddProject}> + Add New Project</Button>
             </div>
             <ul className="mt-8">
-               {projects.map(project=>(
-                    <li key={project.id}>
-                        <Button className="w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800">
+               {projects.map(project=>{
+                    
+                    let cssClasses = "w-full text-left px-2 py-1 rounded-sm my-1  hover:text-stone-200 hover:bg-stone-800"
+                    if (project.id === selectedProjectId){
+                        cssClasses += ' bg-stone-800 text-stone-200'
+        
+                    }
+                    else{
+                        cssClasses += ' text-stone-400'
+                    }
+                    
+                    return (<li key={project.id}>
+                        <Button 
+                        className={cssClasses}
+                        onClick={()=>onSelectProject(project.id)}
+                        >
                             {project.title}
                         </Button>
-                    </li>
-                ))} 
+                    </li>)
+               })} 
             </ul>
         </aside>
     )
