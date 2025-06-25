@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import ProjectsSidebar from "./components/ProjectsSidebar";
 import NewProject from "./components/NewProject";
@@ -17,6 +16,16 @@ function App() {
     return{
       ...prevState,
       selectedProjectId:id,
+     }
+    });
+  }
+
+  function handleDeleteSelectedProject(){
+    setProjectsState(prevState =>{
+    return{
+      ...prevState,
+      selectedProjectId:undefined,
+      projects: prevState.projects.filter(project => project.id !== projectsState.selectedProjectId)
      }
     });
   }
@@ -56,7 +65,7 @@ function App() {
   
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId)
 
-  let content = <SelectedProject project={selectedProject}/>;
+  let content = <SelectedProject onDelete={handleDeleteSelectedProject} project={selectedProject}/>;
 
   if (projectsState.selectedProjectId === null){
     content=<NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />
